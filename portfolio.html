@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - NovaWeb</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+  <style>
+    /* Extra CSS voor Portfolio pagina */
+    .portfolio {
+      padding: calc(85px + 3rem) 1.5rem 3rem;
+      background: var(--bg-primary);
+      min-height: 100vh;
+    }
+
+    .portfolio .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .portfolio h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      text-align: center;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .portfolio-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+    }
+
+    /* Stats */
+    .portfolio-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-5px);
+      border-color: rgba(212, 175, 55, 0.3);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .stat-number {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Filters */
+    .portfolio-filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .filter-btn {
+      padding: 0.75rem 1.5rem;
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-light);
+      border-radius: 50px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--gradient-gold);
+      color: var(--bg-primary);
+      border-color: var(--accent-gold);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+    }
+
+    /* Portfolio Grid */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .portfolio-item {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .portfolio-item.hidden {
+      opacity: 0;
+      transform: scale(0.9);
+      height: 0;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .portfolio-item.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: rgba(212, 175, 55, 0.4);
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .portfolio-image {
+      position: relative;
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .website-screenshot {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.4s ease;
+    }
+
+    .portfolio-item:hover .website-screenshot {
+      transform: scale(1.1);
+    }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 25, 41, 0.95), transparent);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .portfolio-item:hover .project-overlay {
+      opacity: 1;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .view-project-btn,
+    .project-details-btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .view-project-btn {
+      background: var(--gradient-gold);
+      color: var(--bg-primary);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    }
+
+    .view-project-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    .project-details-btn {
+      background: transparent;
+      color: var(--text-primary);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .project-details-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--text-primary);
+    }
+
+    .project-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      background: rgba(212, 175, 55, 0.9);
+      color: var(--bg-primary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-radius: 50px;
+      letter-spacing: 0.5px;
+    }
+
+    .portfolio-content {
+      padding: 1.5rem;
+    }
+
+    .portfolio-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .portfolio-content p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-secondary);
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-light);
+    }
+
+    /* Tablet */
+    @media (min-width: 768px) {
+      .portfolio {
+        padding: calc(85px + 4rem) 2rem 4rem;
+      }
+
+      .portfolio h2 {
+        font-size: 3rem;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+      }
+
+      .portfolio-image {
+        height: 280px;
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+      }
+    }
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+      .portfolio {
+        padding: calc(85px + 5rem) 2.5rem 5rem;
+      }
+
+      .portfolio h2 {
+        font-size: 3.5rem;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+      }
+
+      .portfolio-image {
+        height: 300px;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .portfolio-content h3 {
+        font-size: 1.6rem;
+      }
+    }
+
+.portfolio {
+  background:
+    linear-gradient(
+      rgba(10, 25, 41, 0.7),
+      rgba(10, 25, 41, 0.7)
+    ),
+    url("Fotos/wp3.jpg") center / cover no-repeat;
+
+  background-attachment: fixed;
+}
+
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <div class="header-left">
+        <a href="index.html" class="logo">
+          <img src="Fotos/Logo.svg" alt="NovaWeb Logo" class="logo-icon">
+        </a>
+        
+        <nav id="navMenu">
+          <a href="index.html">Home</a>
+          <a href="index.html">Over ons</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="diensten.html">Diensten</a>
+          <a href="https://wa.me/31612345678" class="mobile-cta">Contact Opnemen</a>
+        </nav>
+      </div>
+
+      <div class="header-right">
+        <a href="https://wa.me/31612345678" class="btn-contact-secondary">App ons</a>
+        <a href="mailto:info@novaweb.nl" class="btn-contact">E-mail ons</a>
+        
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- PORTFOLIO SECTIE -->
+    <section class="portfolio">
+      <div class="container">
+        <h2>Onze Creaties In De Spotlight</h2>
+        <p class="portfolio-subtitle">Ontdek onze meest recente projecten</p>
+        
+        <div class="portfolio-stats">
+          <div class="stat-item">
+            <span class="stat-number">15+</span>
+            <span class="stat-label">Projecten</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Tevredenheid</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">2-4</span>
+            <span class="stat-label">Weken</span>
+          </div>
+        </div>
+
+        <div class="portfolio-filters">
+          <button class="filter-btn active" data-filter="all">Alle Projecten</button>
+          <button class="filter-btn" data-filter="website">Websites</button>
+          <button class="filter-btn" data-filter="student">Student Projecten</button>
+          <button class="filter-btn" data-filter="business">Zakelijke Projecten</button>
+          <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+        </div>
+
+        <div class="portfolio-grid">
+          <div class="portfolio-item visible" data-category="website business">
+            <div class="portfolio-image">
+              <div class="website-screenshot" style="background-image: url('Fotos/AchtergrondWS1.png');"></div>
+              <div class="project-overlay">
+                <div class="project-links">
+                  <a href="https://bigenbetsy.github.io/LaptopAdviseur/" target="_blank" class="view-project-btn">Live Bekijken</a>
+                  <a href="javascript:void(0)" class="project-details-btn">Meer Details</a>
+                </div>
+              </div>
+              <div class="project-badge">Full project</div>
+            </div>
+            <div class="portfolio-content">
+              <h3>OnlineLaptopGids</h3>
+              <p>Uitgebreide laptop vergelijkingsplatform met geavanceerde filters en gebruiksvriendelijke interface.</p>
+            </div>
+          </div>
+
+          <div class="portfolio-item visible" data-category="website business">
+            <div class="portfolio-image">
+              <div class="website-screenshot" style="background-image: url('Fotos/muziek.png');"></div>
+              <div class="project-overlay">
+                <div class="project-links">
+                  <a href="https://bigenbetsy.github.io/muziek/" target="_blank" class="view-project-btn">Live Bekijken</a>
+                  <a href="javascript:void(0)" class="project-details-btn">Meer Details</a>
+                </div>
+              </div>
+              <div class="project-badge">Bestseller</div>
+            </div>
+            <div class="portfolio-content">
+              <h3>Harmonie Muziek Academie</h3>
+              <p>Compleet inschrijvingssysteem voor muziekles met online betalingen.</p>
+            </div>
+          </div>
+
+          <div class="portfolio-item visible" data-category="website business">
+            <div class="portfolio-image">
+              <div class="website-screenshot" style="background-image: url('Fotos/FotoCollage.png');"></div>
+              <div class="project-overlay">
+                <div class="project-links">
+                  <a href="https://bigenbetsy.github.io/FotoCollage/" target="_blank" class="view-project-btn">Live Bekijken</a>
+                  <a href="javascript:void(0)" class="project-details-btn">Meer Details</a>
+                </div>
+              </div>
+              <div class="project-badge">Design</div>
+            </div>
+            <div class="portfolio-content">
+              <h3>Lumina FotoStudio</h3>
+              <p>Elegant portfolio website met gallerij en contactformulier.</p>
+            </div>
+          </div>
+
+          <div class="portfolio-item visible" data-category="student website">
+            <div class="portfolio-image">
+              <div class="website-screenshot" style="background-image: url('Fotos/studentenClub.png');"></div>
+              <div class="project-overlay">
+                <div class="project-links">
+                  <a href="https://bigenbetsy.github.io/College/" target="_blank" class="view-project-btn">Live Bekijken</a>
+                  <a href="javascript:void(0)" class="project-details-btn">Meer Details</a>
+                </div>
+              </div>
+              <div class="project-badge">Student</div>
+            </div>
+            <div class="portfolio-content">
+              <h3>Campus Connect</h3>
+              <p>Studenten community website met evenementen en forum.</p>
+            </div>
+          </div>
+
+          <div class="portfolio-item visible" data-category="business website ecommerce">
+            <div class="portfolio-image">
+              <div class="website-screenshot" style="background-image: url('Fotos/cafewp.png');"></div>
+              <div class="project-overlay">
+                <div class="project-links">
+                  <a href="https://bigenbetsy.github.io/StamCafe/" target="_blank" class="view-project-btn">Live Bekijken</a>
+                  <a href="javascript:void(0)" class="project-details-btn">Meer Details</a>
+                </div>
+              </div>
+              <div class="project-badge">Horeca</div>
+            </div>
+            <div class="portfolio-content">
+              <h3>Bistro Modern</h3>
+              <p>Café website met online bestelsysteem en menukaart.</p>
+            </div>
+          </div>
+
+          <div class="portfolio-item visible" data-category="student website">
+            <div class="portfolio-image">
+              <div class="website-screenshot" style="background-image: url('Fotos/portfolioWP.png');"></div>
+              <div class="project-overlay">
+                <div class="project-links">
+                  <a href="https://bigenbetsy.github.io/Portfolio/" target="_blank" class="view-project-btn">Live Bekijken</a>
+                  <a href="javascript:void(0)" class="project-details-btn">Meer Details</a>
+                </div>
+              </div>
+              <div class="project-badge">Portfolio</div>
+            </div>
+            <div class="portfolio-content">
+              <h3>Academisch Portfolio</h3>
+              <p>Professioneel student portfolio met CV en projecten.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+
+  <script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    const body = document.body;
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+      body.classList.toggle('menu-open');
+    });
+
+    // Close menu when clicking on a link
+    navMenu.querySelectorAll('a:not(.mobile-cta)').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        body.classList.remove('menu-open');
+      });
+    });
+
+    // Header scroll effect
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Portfolio filter logica
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active to clicked button
+        button.classList.add('active');
+        
+        const filter = button.getAttribute('data-filter');
+        
+        portfolioItems.forEach(item => {
+          const categories = item.getAttribute('data-category').split(' ');
+          
+          // Remove both classes first
+          item.classList.remove('visible', 'hidden');
+          
+          // Add appropriate class
+          if (filter === 'all' || categories.includes(filter)) {
+            item.classList.add('visible');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
