@@ -1,5 +1,4 @@
-
-    * {
+* {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -505,12 +504,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* Voeg achtergrond toe aan alleen de hero */
   background-image: url("Fotos/wp8.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* Optioneel: geeft een parallax effect */
+  background-attachment: fixed;
   position: relative;
 }
 
@@ -518,7 +516,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(10, 25, 41, 0.7); /* Donkere overlay */
+  background: rgba(10, 25, 41, 0.7);
   z-index: 0;
 }
 
@@ -908,69 +906,10 @@
    CONTAINER OPTIMIZATION
 =================================== */
 
-/* Voeg deze toe om de ruimte aan de zijkanden te minimaliseren */
 .hero-container,
 .header-container,
-/* Voeg eventueel ook aan voor andere secties die je later maakt */
 .section-container {
-  max-width: 1200px; /* Verlaag van 1400px naar 1200px voor compactere layout */
-  margin: 0 auto;
-}
-
-/* Hero sectie aanpassingen voor compactere layout */
-.hero {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-
-/* Tablet & Desktop aanpassingen */
-@media (min-width: 768px) {
-  .hero {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-  
-  .header-container {
-    padding: 0.7rem 1.5rem; /* Verminder padding */
-  }
-}
-
-@media (min-width: 1024px) {
-  .hero {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-  
-  .header-container {
-    padding: 0.75rem 2rem;
-  }
-  
-  /* Optioneel: Verklein de gap in de hero container */
-  .hero-container {
-    gap: 2rem; /* Verminder van 4rem naar 2rem */
-  }
-}
-
-@media (min-width: 1280px) {
-  .hero {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-  }
-}
-
-/* Optioneel: Als je nog compactere marges wilt op zeer grote schermen */
-@media (min-width: 1600px) {
-  .hero-container,
-  .header-container {
-    max-width: 1300px; /* In plaats van onbeperkt groeien */
-  }
-}
-
-.header-container,
-.hero-container,
-.section-container {
-  max-width: 1600px; /* was 1200 / 1400 */
+  max-width: 1600px;
   margin: 0 auto;
   padding-left: 2rem;
   padding-right: 2rem;
@@ -992,11 +931,29 @@
     }
 
     /* Mission & Vision Section */
-/* Mission & Vision Section */
 .mission-vision-section {
   padding: 5rem 1.5rem;
-  background: var(--bg-secondary);
-  display: none; /* VERBORGEN OP MOBIEL */
+  position: relative;
+  background-image: url('Fotos/wp8.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: none;
+}
+
+.mission-vision-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 25, 41, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 0;
+}
+
+.mission-vision-section .container {
+  position: relative;
+  z-index: 1;
 }
 
 .mission-vision-grid {
@@ -1009,19 +966,23 @@
 
 .mission-card,
 .vision-card {
-  background: var(--bg-card);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
-  border: 1px solid var(--border-light);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 20px;
   padding: 2.5rem;
   transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .mission-card:hover,
 .vision-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(212, 175, 55, 0.3);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  transform: translateY(-8px);
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4),
+              0 0 40px rgba(212, 175, 55, 0.2);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .card-icon {
@@ -1044,10 +1005,9 @@
   font-size: 1.05rem;
 }
 
-/* TABLET - TOON WEER */
 @media (min-width: 768px) {
   .mission-vision-section {
-    display: block; /* ZICHTBAAR VANAF TABLET */
+    display: block;
   }
 
   .mission-vision-grid {
@@ -1094,43 +1054,63 @@
       color: var(--accent-gold);
     }
 
-    /* Team Section */
-/* Team Section - COMPACTERE VERSIE */
-/* Team Section - SUPER COMPACT */
-/* Team Section - BREED EN LAAG */
+/* Team Section */
 .team-section {
   padding: 3rem 1.5rem;
-  background: var(--bg-secondary);
+  position: relative;
+  background-image: url('Fotos/wp3.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.team-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 25, 41, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 0;
+}
+
+.team-section .container {
+  position: relative;
+  z-index: 1;
 }
 
 .team-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
-  max-width: 1400px; /* Breder gemaakt */
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 .team-member-card {
-  background: var(--bg-card);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
-  border: 1px solid var(--border-light);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;
   overflow: hidden;
   transition: all 0.4s ease;
   display: flex;
   flex-direction: row;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .team-member-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-8px);
   border-color: rgba(212, 175, 55, 0.4);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4),
+              0 0 40px rgba(212, 175, 55, 0.2);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .member-image-wrapper {
   position: relative;
-  width: 120px; /* Smaller image */
+  width: 120px;
   min-height: 100%;
   overflow: hidden;
   flex-shrink: 0;
@@ -1191,7 +1171,7 @@
   font-size: 0.8rem;
   margin-bottom: 0.75rem;
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* Max 2 regels op mobile */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1211,10 +1191,12 @@
 
 .expertise-tag {
   padding: 0.25rem 0.5rem;
-  background: rgba(212, 175, 55, 0.1);
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 50px;
-  color: var(--accent-gold);
+  color: #fff;
   font-size: 0.65rem;
   font-weight: 600;
   transition: all 0.3s ease;
@@ -1222,19 +1204,18 @@
 }
 
 .expertise-tag:hover {
-  background: rgba(212, 175, 55, 0.2);
+  background: rgba(255, 255, 255, 0.2);
   border-color: var(--accent-gold);
 }
 
-/* TABLET - NAAST ELKAAR! */
 @media (min-width: 768px) {
   .team-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 KOLOMMEN NAAST ELKAAR */
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
 
   .member-image-wrapper {
-    width: 100px; /* Smaller */
+    width: 100px;
   }
 
   .member-content {
@@ -1259,16 +1240,15 @@
   }
 }
 
-/* DESKTOP - NOG BREDER */
 @media (min-width: 1024px) {
   .team-section {
     padding: 3rem 2rem;
   }
 
   .team-grid {
-    grid-template-columns: repeat(2, 1fr); /* BLIJF 2 KOLOMMEN */
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-    max-width: 1600px; /* Extra breed */
+    max-width: 1600px;
   }
 
   .member-image-wrapper {
@@ -1289,7 +1269,7 @@
 
   .member-description {
     font-size: 0.88rem;
-    -webkit-line-clamp: 3; /* 3 regels */
+    -webkit-line-clamp: 3;
   }
 
   .expertise-tag {
@@ -1298,7 +1278,6 @@
   }
 }
 
-/* EXTRA GROTE SCHERMEN */
 @media (min-width: 1280px) {
   .member-image-wrapper {
     width: 160px;
@@ -1316,7 +1295,7 @@
 
 @media (min-width: 1600px) {
   .team-grid {
-    max-width: 1800px; /* Super breed op grote schermen */
+    max-width: 1800px;
   }
 }
 
@@ -1467,70 +1446,153 @@
       font-weight: 600;
     }
 
-    /* Why Us Section */
-/* Why Us Section */
+    /* ===================================
+       WHY US SECTION - HORIZONTALE SCROLL
+    =================================== */
+    
 .why-us-section {
-  padding: 5rem 1.5rem;
+  padding: 5rem 0;
   background: var(--bg-secondary);
-  display: none; /* VERBORGEN OP MOBIEL */
+  position: relative;
+  overflow: hidden;
 }
 
-.reasons-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+.why-us-section .section-header {
+  padding: 0 1.5rem;
+  margin-bottom: 3rem;
 }
 
+/* Scrolling container */
+.reasons-scroll-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 2rem 0;
+}
+
+/* Gradient masks voor vloeiende edges */
+.reasons-scroll-wrapper::before,
+.reasons-scroll-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.reasons-scroll-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-secondary), transparent);
+}
+
+.reasons-scroll-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-secondary), transparent);
+}
+
+/* Track met kaarten */
+.reasons-track {
+  display: flex;
+  width: max-content;
+  gap: 1.5rem;
+  animation: scroll-infinite 50s linear infinite;
+}
+
+.reasons-track {
+  will-change: transform;
+  transform: translate3d(0,0,0);
+}
+
+
+
+/* Pauzeer bij hover */
+.reasons-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Compacte kaarten */
 .reason-card {
-  background: var(--bg-card);
+  flex: 0 0 300px;
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-light);
-  border-radius: 20px;
-  padding: 2rem;
+  border-radius: 16px;
+  padding: 1.75rem;
   transition: all 0.3s ease;
+  position: relative;
 }
 
 .reason-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(212, 175, 55, 0.3);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-}
-
-.reason-icon {
-  font-size: 2.5rem;
-  display: block;
-  margin-bottom: 1rem;
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
+              0 0 30px rgba(212, 175, 55, 0.2);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .reason-card h3 {
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   color: var(--text-primary);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   font-weight: 700;
+  line-height: 1.3;
 }
 
 .reason-card p {
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.6;
+  font-size: 0.9rem;
 }
 
-/* TABLET - TOON WEER */
+/* Tablet & Desktop - bredere kaarten */
 @media (min-width: 768px) {
-  .why-us-section {
-    display: block; /* ZICHTBAAR VANAF TABLET */
+  .reasons-scroll-wrapper::before,
+  .reasons-scroll-wrapper::after {
+    width: 150px;
   }
 
-  .reasons-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .reasons-track {
+    gap: 2rem;
+  }
+
+  .reason-card {
+    flex: 0 0 360px;
+    padding: 2rem;
+  }
+
+  .reason-card h3 {
+    font-size: 1.25rem;
+  }
+
+  .reason-card p {
+    font-size: 0.95rem;
   }
 }
 
-/* DESKTOP */
 @media (min-width: 1024px) {
-  .reasons-grid {
-    grid-template-columns: repeat(3, 1fr);
+  .reason-card {
+    flex: 0 0 400px;
+    padding: 2.25rem;
+  }
+
+  .reason-card h3 {
+    font-size: 1.35rem;
+  }
+
+  .reason-card p {
+    font-size: 1rem;
   }
 }
 
@@ -1602,10 +1664,6 @@
         grid-template-columns: repeat(3, 1fr);
       }
 
-      .reasons-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
       .cta-buttons {
         flex-direction: row;
         justify-content: center;
@@ -1626,10 +1684,6 @@
         grid-template-columns: repeat(3, 1fr);
       }
 
-      .reasons-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
       .section-header h2 {
         font-size: 3rem;
       }
@@ -1645,7 +1699,7 @@
       rgba(10, 25, 41, 0.4),
       rgba(10, 25, 41, 0.4)
     ),
-    url("Fotos/wp3.jpg") center / cover no-repeat;
+    url("Fotos/wp8.jpg") center / cover no-repeat;
 
   background-attachment: fixed;
 }
@@ -1682,7 +1736,7 @@
 }
 
 .bg-layer-1 { background-image: url('Fotos/wp8.jpg'); opacity: 1; }
-.bg-layer-2 { background-image: url('Fotos/wp3.jpg'); opacity: 0; }
+.bg-layer-2 { background-image: url('Fotos/wp8.jpg'); opacity: 0; }
 .bg-layer-3 { background-image: url('Fotos/wp1.jpg'); opacity: 0; }
 .bg-layer-4 { background-image: url('Fotos/wp2.jpg'); opacity: 0; }
 .bg-layer-5 { background-image: url('Fotos/wp4.jpg'); opacity: 0; }
@@ -1809,7 +1863,7 @@ section {
 }
 
 .bg-layer-2 { 
-  background-image: url('Fotos/wp3.jpg'); 
+  background-image: url('Fotos/wp8.jpg'); 
   opacity: 0; 
 }
 
@@ -1919,116 +1973,6 @@ section {
   background: linear-gradient(90deg, #D4AF37, #FFD700);
   margin: 1rem 0;
 }
-/* ===== MISSION & VISION GLAZIG EFFECT ===== */
-.mission-vision-section {
-  padding: 5rem 1.5rem;
-  position: relative;
-  background-image: url('Fotos/wp3.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  display: none; /* VERBORGEN OP MOBIEL */
-}
-
-.mission-vision-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 25, 41, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  z-index: 0;
-}
-
-.mission-vision-section .container {
-  position: relative;
-  z-index: 1;
-}
-
-.mission-card,
-.vision-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
-  padding: 2.5rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-.mission-card:hover,
-.vision-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(212, 175, 55, 0.4);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4),
-              0 0 40px rgba(212, 175, 55, 0.2);
-  background: rgba(255, 255, 255, 0.12);
-}
-
-/* TABLET - TOON WEER */
-@media (min-width: 768px) {
-  .mission-vision-section {
-    display: block; /* ZICHTBAAR VANAF TABLET */
-  }
-
-  .mission-vision-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* ===== TEAM GLAZIG EFFECT ===== */
-.team-section {
-  padding: 5rem 1.5rem;
-  position: relative;
-  background-image: url('Fotos/wp3.jpg'); /* zelfde achtergrond */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-
-/* Donkere glass overlay */
-.team-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 25, 41, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  z-index: 0;
-}
-
-.team-section .container {
-  position: relative;
-  z-index: 1;
-}
-.team-member-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-/* Hover = exact dezelfde feel als missie/visie */
-.team-member-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(212, 175, 55, 0.4);
-  box-shadow:
-    0 16px 48px rgba(0, 0, 0, 0.4),
-    0 0 40px rgba(212, 175, 55, 0.2);
-  background: rgba(255, 255, 255, 0.12);
-}
-.expertise-tag {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: #fff;
-}
 
 .scroll-progress {
   position: fixed;
@@ -2087,5 +2031,42 @@ section {
   .team-section,
   .mission-vision-section {
     background-attachment: scroll;
+  }
+}
+
+.why-us-section {
+  padding: 5rem 0;
+  background: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+  display: none; /* VERBORGEN OP MOBIEL */
+}
+
+@media (min-width: 768px) {
+  .why-us-section {
+    display: block; /* ZICHTBAAR VANAF TABLET */
+  }
+  
+  .reasons-scroll-wrapper::before,
+  .reasons-scroll-wrapper::after {
+    width: 150px;
+  }
+
+}
+
+
+/* MOBILE HERO BACKGROUND */
+@media (max-width: 768px) {
+  .hero {
+    background-image: url("Fotos/wp9.avif");
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+}
+
+@media (max-width: 768px) {
+  .cta-final-section {
+    background-color: var(--light-bg);
   }
 }

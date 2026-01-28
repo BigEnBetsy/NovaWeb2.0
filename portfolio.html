@@ -5,152 +5,164 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio - NovaWeb</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="main.css">
   <style>
-    /* Extra CSS voor Portfolio pagina */
+    /* Modern Portfolio Design */
     .portfolio {
-      padding: calc(85px + 3rem) 1.5rem 3rem;
+      padding: calc(85px + 4rem) 1.5rem 5rem;
       background: var(--bg-primary);
       min-height: 100vh;
     }
 
     .portfolio .container {
-      max-width: 1400px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    .portfolio h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
+    /* Header Section */
+    .portfolio-header {
       text-align: center;
+      margin-bottom: 4rem;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    .portfolio-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
       color: var(--text-primary);
       margin-bottom: 1rem;
+      font-weight: 900;
+      letter-spacing: -1px;
     }
 
     .portfolio-subtitle {
-      text-align: center;
       color: var(--text-muted);
-      font-size: 1.1rem;
-      margin-bottom: 3rem;
+      font-size: 1.05rem;
+      font-weight: 400;
+      max-width: 500px;
+      margin: 0 auto 0.5rem;
+      line-height: 1.6;
     }
 
-    /* Stats */
+    /* Stats Section - Modern */
     .portfolio-stats {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      max-width: 800px;
-      margin: 0 auto 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.5rem;
+      max-width: 600px;
+      margin: 3rem auto 0;
     }
 
     .stat-item {
-      text-align: center;
       padding: 1.5rem;
-      background: var(--bg-card);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--border-light);
-      border-radius: 16px;
+      background: linear-gradient(135deg, var(--bg-card) 0%, rgba(212, 175, 55, 0.05) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 12px;
+      text-align: center;
       transition: all 0.3s ease;
     }
 
     .stat-item:hover {
-      transform: translateY(-5px);
-      border-color: rgba(212, 175, 55, 0.3);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+      border-color: rgba(212, 175, 55, 0.5);
+      transform: translateY(-4px);
+      background: linear-gradient(135deg, var(--bg-card) 0%, rgba(212, 175, 55, 0.1) 100%);
     }
 
     .stat-number {
       display: block;
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 900;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
       background: var(--gradient-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
     }
 
     .stat-label {
       color: var(--text-secondary);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
-    /* Filters */
+    /* Filters - Modern */
     .portfolio-filters {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1rem;
-      margin-bottom: 3rem;
+      gap: 0.75rem;
+      margin: 4rem 0 3rem;
     }
 
     .filter-btn {
-      padding: 0.75rem 1.5rem;
+      padding: 0.6rem 1.3rem;
       background: var(--bg-card);
-      backdrop-filter: blur(20px);
       border: 1px solid var(--border-light);
-      border-radius: 50px;
+      border-radius: 8px;
       color: var(--text-secondary);
       font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
+      white-space: nowrap;
     }
 
-    .filter-btn:hover,
+    .filter-btn:hover {
+      border-color: rgba(212, 175, 55, 0.5);
+      color: var(--text-primary);
+      transform: translateY(-2px);
+    }
+
     .filter-btn.active {
       background: var(--gradient-gold);
       color: var(--bg-primary);
       border-color: var(--accent-gold);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
     }
 
-    /* Portfolio Grid */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
 
     .portfolio-item {
       background: var(--bg-card);
-      backdrop-filter: blur(20px);
       border: 1px solid var(--border-light);
-      border-radius: 20px;
+      border-radius: 16px;
       overflow: hidden;
-      transition: all 0.4s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       opacity: 1;
       transform: scale(1);
+      display: grid;
+      grid-template-columns: 1fr;
     }
 
-    .portfolio-item.hidden {
-      opacity: 0;
-      transform: scale(0.9);
-      height: 0;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
+.portfolio-item.hidden {
+  display: none;
+}
 
-    .portfolio-item.visible {
-      opacity: 1;
-      transform: scale(1);
-    }
+.portfolio-item.visible {
+  opacity: 1;
+  transform: scale(1);
+}
 
     .portfolio-item:hover {
-      transform: translateY(-8px) scale(1.02);
-      border-color: rgba(212, 175, 55, 0.4);
-      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.4);
+      border-color: rgba(212, 175, 55, 0.3);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+      transform: translateY(-6px);
     }
 
     .portfolio-image {
       position: relative;
-      height: 250px;
+      height: 280px;
       overflow: hidden;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
     }
 
     .website-screenshot {
@@ -158,21 +170,22 @@
       height: 100%;
       background-size: cover;
       background-position: center;
-      transition: transform 0.4s ease;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
     }
 
     .portfolio-item:hover .website-screenshot {
-      transform: scale(1.1);
+      transform: scale(1.08);
     }
 
     .project-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(10, 25, 41, 0.95), transparent);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(10, 25, 41, 0.9) 60%, rgba(10, 25, 41, 0.95) 100%);
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      padding: 2rem;
+      padding: 2rem 1.5rem 1.5rem;
       opacity: 0;
       transition: opacity 0.3s ease;
     }
@@ -184,19 +197,21 @@
     .project-links {
       display: flex;
       gap: 1rem;
-      flex-wrap: wrap;
       justify-content: center;
+      width: 100%;
     }
 
     .view-project-btn,
     .project-details-btn {
-      padding: 0.75rem 1.5rem;
-      border-radius: 50px;
+      padding: 0.65rem 1.5rem;
+      border-radius: 8px;
       font-weight: 600;
       font-size: 0.9rem;
       text-decoration: none;
       transition: all 0.3s ease;
       white-space: nowrap;
+      border: none;
+      cursor: pointer;
     }
 
     .view-project-btn {
@@ -207,69 +222,80 @@
 
     .view-project-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
     }
 
     .project-details-btn {
-      background: transparent;
+      background: rgba(255, 255, 255, 0.1);
       color: var(--text-primary);
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(212, 175, 55, 0.3);
       backdrop-filter: blur(10px);
     }
 
     .project-details-btn:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: var(--text-primary);
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--accent-gold);
+      color: var(--text-primary);
     }
 
     .project-badge {
       position: absolute;
       top: 1rem;
       right: 1rem;
-      padding: 0.5rem 1rem;
-      background: rgba(212, 175, 55, 0.9);
+      padding: 0.4rem 0.9rem;
+      background: rgba(212, 175, 55, 0.95);
       color: var(--bg-primary);
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
-      border-radius: 50px;
+      border-radius: 6px;
       letter-spacing: 0.5px;
+      backdrop-filter: blur(10px);
     }
 
     .portfolio-content {
-      padding: 1.5rem;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .portfolio-content h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
       color: var(--text-primary);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.3px;
     }
 
     .portfolio-content p {
       color: var(--text-secondary);
       font-size: 0.95rem;
       line-height: 1.6;
+      margin: 0;
     }
 
-    /* Footer */
-    footer {
-      background: var(--bg-secondary);
-      padding: 2rem;
-      text-align: center;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border-light);
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Tablet */
     @media (min-width: 768px) {
       .portfolio {
-        padding: calc(85px + 4rem) 2rem 4rem;
+        padding: calc(85px + 4rem) 2rem 5rem;
       }
 
-      .portfolio h2 {
-        font-size: 3rem;
+      .portfolio-header h2 {
+        font-size: clamp(2.5rem, 6vw, 3.5rem);
       }
 
       .portfolio-grid {
@@ -277,12 +303,16 @@
         gap: 2.5rem;
       }
 
+      .portfolio-item {
+        grid-template-columns: 1fr;
+      }
+
       .portfolio-image {
-        height: 280px;
+        height: 300px;
       }
 
       .stat-number {
-        font-size: 2.5rem;
+        font-size: 2rem;
       }
     }
 
@@ -292,7 +322,7 @@
         padding: calc(85px + 5rem) 2.5rem 5rem;
       }
 
-      .portfolio h2 {
+      .portfolio-header h2 {
         font-size: 3.5rem;
       }
 
@@ -301,28 +331,73 @@
         gap: 3rem;
       }
 
+      .portfolio-item {
+        grid-template-columns: 1fr;
+      }
+
       .portfolio-image {
-        height: 300px;
+        height: 320px;
+      }
+
+      .project-links {
+        gap: 1.2rem;
+      }
+
+      .view-project-btn,
+      .project-details-btn {
+        padding: 0.7rem 1.8rem;
       }
     }
 
-    @media (min-width: 1280px) {
-      .portfolio-content h3 {
-        font-size: 1.6rem;
-      }
+    /* Background */
+    .portfolio {
+      background:
+        linear-gradient(
+          135deg,
+          rgba(10, 25, 41, 0.85),
+          rgba(10, 25, 41, 0.85)
+        ),
+        url("Fotos/wp3.jpg") center / cover no-repeat;
+      background-attachment: fixed;
     }
 
-.portfolio {
-  background:
-    linear-gradient(
-      rgba(10, 25, 41, 0.7),
-      rgba(10, 25, 41, 0.7)
-    ),
-    url("Fotos/wp3.jpg") center / cover no-repeat;
+    /* Footer */
+    footer {
+      background: var(--bg-secondary);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-light);
+      font-size: 0.95rem;
+    }
 
-  background-attachment: fixed;
+/* Tablet */
+@media (min-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
 }
 
+/* Desktop */
+@media (min-width: 1024px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+}
+
+.portfolio-item.hiding {
+  opacity: 0;
+  transform: scale(0.92) translateY(20px);
+  /* Fade OUT animatie */
+}
+
+.portfolio-item.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  /* Fade IN animatie */
+}
 
   </style>
 </head>
@@ -363,21 +438,23 @@
     <!-- PORTFOLIO SECTIE -->
     <section class="portfolio">
       <div class="container">
-        <h2>Onze Creaties In De Spotlight</h2>
-        <p class="portfolio-subtitle">Ontdek onze meest recente projecten</p>
-        
-        <div class="portfolio-stats">
-          <div class="stat-item">
-            <span class="stat-number">15+</span>
-            <span class="stat-label">Projecten</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">100%</span>
-            <span class="stat-label">Tevredenheid</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">2-4</span>
-            <span class="stat-label">Weken</span>
+        <div class="portfolio-header">
+          <h2>Onze Creaties In De Spotlight</h2>
+          <p class="portfolio-subtitle">Ontdek onze meest recente projecten</p>
+          
+          <div class="portfolio-stats">
+            <div class="stat-item">
+              <span class="stat-number">15+</span>
+              <span class="stat-label">Projecten</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Tevredenheid</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">2-4</span>
+              <span class="stat-label">Weken</span>
+            </div>
           </div>
         </div>
 
@@ -396,10 +473,10 @@
               <div class="project-overlay">
                 <div class="project-links">
                   <a href="https://bigenbetsy.github.io/LaptopAdviseur/" target="_blank" class="view-project-btn">Live Bekijken</a>
-                  <a href="javascript:void(0)" class="project-details-btn">Meer Details</a>
+                  <a href="javascript:void(0)" class="project-details-btn">Details</a>
                 </div>
               </div>
-              <div class="project-badge">Full project</div>
+              <div class="project-badge">Featured</div>
             </div>
             <div class="portfolio-content">
               <h3>OnlineLaptopGids</h3>
@@ -413,7 +490,7 @@
               <div class="project-overlay">
                 <div class="project-links">
                   <a href="https://bigenbetsy.github.io/muziek/" target="_blank" class="view-project-btn">Live Bekijken</a>
-                  <a href="javascript:void(0)" class="project-details-btn">Meer Details</a>
+                  <a href="javascript:void(0)" class="project-details-btn">Details</a>
                 </div>
               </div>
               <div class="project-badge">Bestseller</div>
@@ -430,7 +507,7 @@
               <div class="project-overlay">
                 <div class="project-links">
                   <a href="https://bigenbetsy.github.io/FotoCollage/" target="_blank" class="view-project-btn">Live Bekijken</a>
-                  <a href="javascript:void(0)" class="project-details-btn">Meer Details</a>
+                  <a href="javascript:void(0)" class="project-details-btn">Details</a>
                 </div>
               </div>
               <div class="project-badge">Design</div>
@@ -447,7 +524,7 @@
               <div class="project-overlay">
                 <div class="project-links">
                   <a href="https://bigenbetsy.github.io/College/" target="_blank" class="view-project-btn">Live Bekijken</a>
-                  <a href="javascript:void(0)" class="project-details-btn">Meer Details</a>
+                  <a href="javascript:void(0)" class="project-details-btn">Details</a>
                 </div>
               </div>
               <div class="project-badge">Student</div>
@@ -464,7 +541,7 @@
               <div class="project-overlay">
                 <div class="project-links">
                   <a href="https://bigenbetsy.github.io/StamCafe/" target="_blank" class="view-project-btn">Live Bekijken</a>
-                  <a href="javascript:void(0)" class="project-details-btn">Meer Details</a>
+                  <a href="javascript:void(0)" class="project-details-btn">Details</a>
                 </div>
               </div>
               <div class="project-badge">Horeca</div>
@@ -481,7 +558,7 @@
               <div class="project-overlay">
                 <div class="project-links">
                   <a href="https://bigenbetsy.github.io/Portfolio/" target="_blank" class="view-project-btn">Live Bekijken</a>
-                  <a href="javascript:void(0)" class="project-details-btn">Meer Details</a>
+                  <a href="javascript:void(0)" class="project-details-btn">Details</a>
                 </div>
               </div>
               <div class="project-badge">Portfolio</div>
@@ -495,8 +572,6 @@
       </div>
     </section>
   </main>
-
-
 
   <script>
     // Hamburger menu
@@ -535,9 +610,7 @@
 
     filterButtons.forEach(button => {
       button.addEventListener('click', () => {
-        // Remove active from all buttons
         filterButtons.forEach(btn => btn.classList.remove('active'));
-        // Add active to clicked button
         button.classList.add('active');
         
         const filter = button.getAttribute('data-filter');
@@ -545,10 +618,8 @@
         portfolioItems.forEach(item => {
           const categories = item.getAttribute('data-category').split(' ');
           
-          // Remove both classes first
           item.classList.remove('visible', 'hidden');
           
-          // Add appropriate class
           if (filter === 'all' || categories.includes(filter)) {
             item.classList.add('visible');
           } else {

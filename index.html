@@ -9,14 +9,362 @@
   <link rel="preload" as="image" href="Fotos/wp8.jpg">
   <link rel="stylesheet" href="main.css">
   <style>
-   
+    /* ===================================
+       VERBETERDE TEAM SECTIE
+    =================================== */
+    
+    .team-section {
+      padding: 5rem 1.5rem;
+      position: relative;
+      background-image: url('Fotos/wp3.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .team-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 25, 41, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 0;
+    }
+
+    .team-section .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+
+    /* Moderne Team Member Card */
+    .team-member-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 3rem;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: visible;
+    }
+
+    .team-member-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(212, 175, 55, 0.4);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
+                  0 0 50px rgba(212, 175, 55, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Card Content Layout */
+    .member-card-inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* Zwevende Foto Cirkel */
+    .member-photo-wrapper {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      margin: 0 auto;
+      z-index: 2;
+    }
+
+    .member-photo-circle {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--accent-gold);
+      box-shadow: 
+        0 0 0 8px rgba(212, 175, 55, 0.1),
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 60px rgba(212, 175, 55, 0.3);
+      position: relative;
+      transition: all 0.4s ease;
+    }
+
+    .team-member-card:hover .member-photo-circle {
+      transform: scale(1.05) translateY(-5px);
+      box-shadow: 
+        0 0 0 12px rgba(212, 175, 55, 0.15),
+        0 25px 50px rgba(0, 0, 0, 0.4),
+        0 0 80px rgba(212, 175, 55, 0.4);
+      border-color: var(--accent-gold-light);
+    }
+
+    .member-photo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .team-member-card:hover .member-photo-circle img {
+      transform: scale(1.1);
+    }
+
+    /* Glow effect achter foto */
+    .member-photo-circle::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .team-member-card:hover .member-photo-circle::before {
+      opacity: 1;
+    }
+
+    /* Status Badge */
+    .member-status-badge {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      width: 32px;
+      height: 32px;
+      background: #10B981;
+      border: 4px solid var(--bg-primary);
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+      z-index: 3;
+    }
+
+    .member-status-badge::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #10B981;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* Content Sectie */
+    .member-info-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .member-header {
+      text-align: center;
+    }
+
+    .member-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .member-title {
+      font-size: 1rem;
+      color: var(--accent-gold);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+
+    .member-role-badge {
+      display: inline-block;
+      padding: 0.5rem 1.25rem;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 50px;
+      color: var(--accent-gold);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Beschrijving */
+    .member-description {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 3px solid var(--accent-gold);
+    }
+
+    .member-description p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    /* Expertise Sectie */
+    .member-expertise {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1.5rem;
+      border-radius: 12px;
+    }
+
+    .member-expertise h4 {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .member-expertise h4::before {
+      content: '⚡';
+      font-size: 1.2rem;
+    }
+
+    .expertise-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .expertise-tag {
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 50px;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .expertise-tag:hover {
+      background: rgba(212, 175, 55, 0.2);
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
+      transform: translateY(-2px);
+    }
+
+    /* Decorative Elements */
+    .member-card-decoration {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .team-member-card:hover .member-card-decoration {
+      opacity: 1;
+    }
+
+    /* Tablet & Desktop */
+    @media (min-width: 768px) {
+      .team-section {
+        padding: 6rem 2rem;
+      }
+
+      .member-card-inner {
+        grid-template-columns: 200px 1fr;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .member-photo-wrapper {
+        width: 200px;
+        height: 200px;
+        margin: 0;
+      }
+
+      .member-header {
+        text-align: left;
+      }
+
+      .member-header h3 {
+        font-size: 2.2rem;
+      }
+
+      .member-title {
+        font-size: 1.05rem;
+      }
+
+      .member-description p {
+        font-size: 1.05rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .team-section {
+        padding: 7rem 2.5rem;
+      }
+
+      .team-grid {
+        gap: 5rem;
+      }
+
+      .member-card-inner {
+        grid-template-columns: 220px 1fr;
+        gap: 3rem;
+      }
+
+      .member-photo-wrapper {
+        width: 220px;
+        height: 220px;
+      }
+
+      .member-header h3 {
+        font-size: 2.5rem;
+      }
+
+      .member-description p {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .team-section .container {
+        max-width: 1400px;
+      }
+
+      .member-card-inner {
+        grid-template-columns: 240px 1fr;
+        gap: 3.5rem;
+      }
+
+      .member-photo-wrapper {
+        width: 240px;
+        height: 240px;
+      }
+    }
   </style>
 </head>
 
 <body>
 <div class="scroll-progress"></div>
-
-
 
   <!-- HEADER -->
   <header>
@@ -53,13 +401,11 @@
     <section class="hero">
       <div class="hero-container">
         <div class="hero-content">
-
-          
           <h1>
             <h1>NovaWeb <span class="highlight">Studenten</span> Webdesign</h1>
           </h1>
           
-          <p class="hero-subtitle" >
+          <p class="hero-subtitle">
 Twee gepassioneerde studenten die betaalbare, professionele websites creëren voor starters en kleine bedrijven.
           </p>
           
@@ -96,8 +442,6 @@ Twee gepassioneerde studenten die betaalbare, professionele websites creëren vo
     </section>
 
     <!-- MISSIE & VISIE SECTIE -->
-
-  
     <section class="mission-vision-section">
       <div class="container">
         <div class="mission-vision-grid">
@@ -142,7 +486,7 @@ Twee gepassioneerde studenten die betaalbare, professionele websites creëren vo
       </div>
     </section>
 
-    <!-- TEAM DETAILS SECTIE -->
+    <!-- TEAM DETAILS SECTIE - VERBETERD -->
     <section id="team" class="team-section">
       <div class="container">
         <div class="section-header">
@@ -153,31 +497,46 @@ Twee gepassioneerde studenten die betaalbare, professionele websites creëren vo
         <div class="team-grid">
           <!-- Stef -->
           <div class="team-member-card">
-            <div class="member-image-wrapper">
-              <img src="Fotos/Stef.jpg" alt="Stef Galler" class="member-image">
-              <div class="member-overlay">
-              </div>
-            </div>
+            <div class="member-card-decoration"></div>
             
-            <div class="member-content">
-              <h3>Stef Galler</h3>
-              <p class="member-title">Chief Technology Officer (CTO) & Co-Founder</p>
+            <div class="member-card-inner">
+              <!-- Zwevende Foto -->
+              <div class="member-photo-wrapper">
+                <div class="member-photo-circle">
+                  <img src="Fotos/Stef.jpg" alt="Stef Galler">
+                  <div class="member-status-badge"></div>
+                </div>
+              </div>
               
-              <p class="member-description">
-                Als informatica student aan HoGent specialiseer ik me in data-analyse, kunstmatige 
-                intelligentie en Full stack development. Mijn sterke punten liggen in het creëren van 
-                robuuste, schaalbare systemen en het implementeren van complexe logica.
-              </p>
-              
-              <div class="member-expertise">
-                <h4>Expertise</h4>
-                <div class="expertise-tags">
-                  <span class="expertise-tag">Python</span>
-                  <span class="expertise-tag">JavaScript</span>
-                  <span class="expertise-tag">Node.js</span>
-                  <span class="expertise-tag">REST API</span>
-                  <span class="expertise-tag">Database Design</span>
-                  <span class="expertise-tag">System Architecture</span>
+              <!-- Content -->
+              <div class="member-info-wrapper">
+                <div class="member-header">
+                  <h3>Stef Galler</h3>
+                  <p class="member-title">Chief Technology Officer</p>
+                  <span class="member-role-badge">Co-Founder</span>
+                </div>
+                
+                <div class="member-description">
+                  <p>
+                    Als informatica student aan HoGent specialiseer ik me in data-analyse, kunstmatige 
+                    intelligentie en Full stack development. Mijn sterke punten liggen in het creëren van 
+                    robuuste, schaalbare systemen en het implementeren van complexe logica. Ik zorg ervoor 
+                    dat elke website niet alleen mooi is, maar ook technisch perfect functioneert.
+                  </p>
+                </div>
+                
+                <div class="member-expertise">
+                  <h4>Expertise & Vaardigheden</h4>
+                  <div class="expertise-tags">
+                    <span class="expertise-tag">Python</span>
+                    <span class="expertise-tag">JavaScript</span>
+                    <span class="expertise-tag">Node.js</span>
+                    <span class="expertise-tag">REST API</span>
+                    <span class="expertise-tag">Database Design</span>
+                    <span class="expertise-tag">System Architecture</span>
+                    <span class="expertise-tag">AI & Machine Learning</span>
+                    <span class="expertise-tag">Data Analysis</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -185,31 +544,46 @@ Twee gepassioneerde studenten die betaalbare, professionele websites creëren vo
 
           <!-- Robin -->
           <div class="team-member-card">
-            <div class="member-image-wrapper">
-              <img src="Fotos/Robin.jpg" alt="Robin Baeyens" class="member-image">
-              <div class="member-overlay">
-              </div>
-            </div>
+            <div class="member-card-decoration"></div>
             
-            <div class="member-content">
-              <h3>Robin Baeyens</h3>
-              <p class="member-title">Chief Business Officer (CBO) & Co-Founder</p>
+            <div class="member-card-inner">
+              <!-- Zwevende Foto -->
+              <div class="member-photo-wrapper">
+                <div class="member-photo-circle">
+                  <img src="Fotos/Robin.jpg" alt="Robin Baeyens">
+                  <div class="member-status-badge"></div>
+                </div>
+              </div>
               
-              <p class="member-description">
-                Als verantwoordelijke voor de financiële, commerciële en klantgerichte werking van het 
-                bedrijf zorg ik ervoor dat elk project niet alleen technisch sterk is, maar ook strategisch 
-                en economisch duurzaam. Mijn focus ligt op klantrelaties, groei en de algemene bedrijfsvoering.
-              </p>
-              
-              <div class="member-expertise">
-                <h4>Expertise</h4>
-                <div class="expertise-tags">
-                  <span class="expertise-tag">Financieel Beheer</span>
-                  <span class="expertise-tag">Commerciële Strategie</span>
-                  <span class="expertise-tag">Klantenrelaties</span>
-                  <span class="expertise-tag">Projectmanagement</span>
-                  <span class="expertise-tag">Business Development</span>
-                  <span class="expertise-tag">Communicatie & Sales</span>
+              <!-- Content -->
+              <div class="member-info-wrapper">
+                <div class="member-header">
+                  <h3>Robin Baeyens</h3>
+                  <p class="member-title">Chief Business Officer</p>
+                  <span class="member-role-badge">Co-Founder</span>
+                </div>
+                
+                <div class="member-description">
+                  <p>
+                    Als verantwoordelijke voor de financiële, commerciële en klantgerichte werking van het 
+                    bedrijf zorg ik ervoor dat elk project niet alleen technisch sterk is, maar ook strategisch 
+                    en economisch duurzaam. Mijn focus ligt op klantrelaties, groei en de algemene bedrijfsvoering. 
+                    Ik ben het aanspreekpunt voor alle zakelijke vragen en partnerships.
+                  </p>
+                </div>
+                
+                <div class="member-expertise">
+                  <h4>Expertise & Vaardigheden</h4>
+                  <div class="expertise-tags">
+                    <span class="expertise-tag">Financieel Beheer</span>
+                    <span class="expertise-tag">Commerciële Strategie</span>
+                    <span class="expertise-tag">Klantenrelaties</span>
+                    <span class="expertise-tag">Projectmanagement</span>
+                    <span class="expertise-tag">Business Development</span>
+                    <span class="expertise-tag">Communicatie & Sales</span>
+                    <span class="expertise-tag">Marketing</span>
+                    <span class="expertise-tag">Ondernemerschap</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -258,58 +632,77 @@ Twee gepassioneerde studenten die betaalbare, professionele websites creëren vo
       </div>
     </section>
 
-
-
-    
-    <!-- WAAROM ONS SECTIE -->
+    <!-- WAAROM ONS SECTIE - NIEUWE HORIZONTALE SCROLL -->
     <section class="why-us-section">
       <div class="container">
         <div class="section-header">
           <h2>Waarom Kiezen Voor NovaWeb?</h2>
-          <p class="section-subtitle">Zes redenen waarom bedrijven voor ons kiezen</p>
+          <p class="section-subtitle">Redenen waarom bedrijven voor ons kiezen</p>
         </div>
-        
-        <div class="reasons-grid">
+      </div>
+      
+      <div class="reasons-scroll-wrapper">
+        <div class="reasons-track">
+          <!-- Eerste set kaarten -->
           <div class="reason-card">
-            <div class="reason-icon">💡</div>
             <h3>Innovatieve Oplossingen</h3>
-            <p>We combineren academische kennis met praktische ervaring om cutting-edge weboplossingen 
-               te creëren die meegroeien met uw bedrijf.</p>
+            <p>Combinatie van academische kennis met praktische ervaring voor cutting-edge weboplossingen die meegroeien met uw bedrijf.</p>
           </div>
           
           <div class="reason-card">
-            <div class="reason-icon">⚡</div>
             <h3>Snelle & Flexibele Service</h3>
-            <p>Geen bureaucratie of lange wachttijden. Direct contact, snelle beslissingen en agile 
-               ontwikkeling.</p>
+            <p>Geen bureaucratie of lange wachttijden. Direct contact, snelle beslissingen en agile ontwikkeling.</p>
           </div>
           
           <div class="reason-card">
-            <div class="reason-icon">🎯</div>
             <h3>Gepersonaliseerde Aanpak</h3>
-            <p>Elk project is uniek en krijgt onze volledige aandacht. Van concept tot lancering 
-               begeleiden we u persoonlijk.</p>
+            <p>Elk project is uniek en krijgt onze volledige aandacht. Van concept tot lancering begeleiden we u persoonlijk.</p>
           </div>
           
           <div class="reason-card">
-            <div class="reason-icon">💰</div>
             <h3>Uitstekende Prijs-Kwaliteit</h3>
-            <p>Professionele resultaten tegen een fractie van de marktprijs. Geen compromissen op 
-               kwaliteit.</p>
+            <p>Professionele resultaten tegen een fractie van de marktprijs. Geen compromissen op kwaliteit.</p>
           </div>
           
           <div class="reason-card">
-            <div class="reason-icon">🔧</div>
             <h3>Moderne Technologieën</h3>
-            <p>We werken met de nieuwste tools en frameworks om toekomstbestendige, schaalbare 
-               oplossingen te leveren.</p>
+            <p>We werken met de nieuwste tools en frameworks om toekomstbestendige, schaalbare oplossingen te leveren.</p>
           </div>
           
           <div class="reason-card">
-            <div class="reason-icon">📈</div>
             <h3>Resultaatgericht</h3>
-            <p>We meten ons succes aan het succes van uw project. Duidelijke doelen, transparante 
-               communicatie.</p>
+            <p>We meten ons succes aan het succes van uw project. Duidelijke doelen, transparante communicatie.</p>
+          </div>
+          
+          <!-- Duplicaat set voor naadloze loop -->
+          <div class="reason-card">
+            <h3>Innovatieve Oplossingen</h3>
+            <p>Combinatie van academische kennis met praktische ervaring voor cutting-edge weboplossingen die meegroeien met uw bedrijf.</p>
+          </div>
+          
+          <div class="reason-card">
+            <h3>Snelle & Flexibele Service</h3>
+            <p>Geen bureaucratie of lange wachttijden. Direct contact, snelle beslissingen en agile ontwikkeling.</p>
+          </div>
+          
+          <div class="reason-card">
+            <h3>Gepersonaliseerde Aanpak</h3>
+            <p>Elk project is uniek en krijgt onze volledige aandacht. Van concept tot lancering begeleiden we u persoonlijk.</p>
+          </div>
+          
+          <div class="reason-card">
+            <h3>Uitstekende Prijs-Kwaliteit</h3>
+            <p>Professionele resultaten tegen een fractie van de marktprijs. Geen compromissen op kwaliteit.</p>
+          </div>
+          
+          <div class="reason-card">
+            <h3>Moderne Technologieën</h3>
+            <p>We werken met de nieuwste tools en frameworks om toekomstbestendige, schaalbare oplossingen te leveren.</p>
+          </div>
+          
+          <div class="reason-card">
+            <h3>Resultaatgericht</h3>
+            <p>We meten ons succes aan het succes van uw project. Duidelijke doelen, transparante communicatie.</p>
           </div>
         </div>
       </div>
@@ -382,21 +775,15 @@ Twee gepassioneerde studenten die betaalbare, professionele websites creëren vo
       });
     });
 
+    // Scroll progress bar
+    const progressBar = document.querySelector('.scroll-progress');
 
-  const progressBar = document.querySelector('.scroll-progress');
-
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = (scrollTop / docHeight) * 100;
-    progressBar.style.width = progress + '%';
-  }, { passive: true });
-
-
-
-
-
-
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      progressBar.style.width = progress + '%';
+    }, { passive: true });
   </script>
 
 </body>
