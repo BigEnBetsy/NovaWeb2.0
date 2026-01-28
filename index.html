@@ -360,6 +360,106 @@
         height: 240px;
       }
     }
+    @media (max-width: 767px) {
+  /* Verberg enkel de korte uitleg */
+  .student-showcase .student-bio {
+    display: none;
+  }
+}
+
+
+
+@media (max-width: 767px) {
+
+  /* Team grid → nette verticale lijst */
+  .team-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Team card */
+  .team-member {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: left;
+  }
+
+  /* Foto kleiner & links */
+  .team-photo {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  /* Tekst */
+  .team-member h3 {
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .team-role {
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+    opacity: 0.8;
+  }
+
+  /* Bio weg op mobiel */
+  .team-bio {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .member-expertise {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .member-description {
+    display: block !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .member-description p {
+    display: block !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .member-role-badge {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .member-photo-wrapper {
+    width: 120px;
+    height: 120px;
+  }
+
+  .member-photo-circle {
+    border-width: 3px;
+    box-shadow:
+      0 0 0 6px rgba(212, 175, 55, 0.1),
+      0 12px 24px rgba(0, 0, 0, 0.25),
+      0 0 30px rgba(212, 175, 55, 0.2);
+  }
+}
+
   </style>
 </head>
 
@@ -504,7 +604,6 @@ Twee gepassioneerde studenten die betaalbare, professionele websites creëren vo
               <div class="member-photo-wrapper">
                 <div class="member-photo-circle">
                   <img src="Fotos/Stef.jpg" alt="Stef Galler">
-                  <div class="member-status-badge"></div>
                 </div>
               </div>
               
@@ -551,7 +650,6 @@ Twee gepassioneerde studenten die betaalbare, professionele websites creëren vo
               <div class="member-photo-wrapper">
                 <div class="member-photo-circle">
                   <img src="Fotos/Robin.jpg" alt="Robin Baeyens">
-                  <div class="member-status-badge"></div>
                 </div>
               </div>
               

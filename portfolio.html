@@ -399,6 +399,24 @@
   /* Fade IN animatie */
 }
 
+/* Details accordion */
+.project-description {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 0.45s ease,
+    opacity 0.3s ease,
+    margin-top 0.3s ease;
+}
+
+.portfolio-item.show-details .project-description {
+  max-height: 200px; /* genoeg voor tekst */
+  opacity: 1;
+  margin-top: 0.75rem;
+}
+
+
   </style>
 </head>
 
@@ -628,6 +646,26 @@
         });
       });
     });
+
+    // Details toggle per portfolio item
+document.querySelectorAll('.project-details-btn').forEach(button => {
+  button.addEventListener('click', e => {
+    e.preventDefault();
+
+    const portfolioItem = button.closest('.portfolio-item');
+    const isOpen = portfolioItem.classList.contains('show-details');
+
+    // Sluit eerst alles (optioneel maar netjes)
+    document.querySelectorAll('.portfolio-item.show-details')
+      .forEach(item => item.classList.remove('show-details'));
+
+    // Toggle huidige
+    if (!isOpen) {
+      portfolioItem.classList.add('show-details');
+    }
+  });
+});
+
   </script>
 
 </body>
