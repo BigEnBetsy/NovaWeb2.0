@@ -2070,3 +2070,348 @@ section {
     background-color: var(--light-bg);
   }
 }
+
+
+
+/* Team Section - Basis */
+.team-section {
+  padding: 4rem 1.5rem;
+  background: linear-gradient(180deg, #0A1929 0%, #0E2238 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.team-section::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.team-section .container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team-section .section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.team-section .section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.team-section .section-header h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--gradient-gold);
+  margin: 0.75rem auto 0;
+  border-radius: 2px;
+}
+
+.team-section .section-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* Team Grid */
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Team Card - Compact & Clean */
+.team-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.team-card:active {
+  transform: scale(0.98);
+}
+
+/* Photo Section - Centered & Compact */
+.team-card-photo {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.25rem;
+}
+
+.team-card-photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent-gold);
+  box-shadow: 
+    0 0 0 6px rgba(212, 175, 55, 0.1),
+    0 8px 24px rgba(0, 0, 0, 0.25),
+    0 0 30px rgba(212, 175, 55, 0.2);
+}
+
+.status-dot {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 24px;
+  height: 24px;
+  background: #10B981;
+  border: 3px solid #0A1929;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.5);
+}
+
+.status-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #10B981;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+/* Card Info - Centered Text */
+.team-card-info {
+  text-align: center;
+}
+
+.team-card-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+  line-height: 1.2;
+}
+
+.team-role {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.team-badge {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 50px;
+  color: var(--accent-gold-light);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 1rem;
+}
+
+.team-bio {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border-left: 3px solid var(--accent-gold);
+}
+
+/* Skills - Compact Tags */
+.team-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.team-skills span {
+  padding: 0.4rem 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.team-skills span:active {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  transform: scale(0.95);
+}
+
+/* ===================================
+   TABLET (768px+) - Side by Side
+=================================== */
+@media (min-width: 768px) {
+  .team-section {
+    padding: 5rem 2rem;
+  }
+
+  .team-section .section-header h2 {
+    font-size: 2.5rem;
+  }
+
+  .team-section .section-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1100px;
+  }
+
+  .team-card {
+    padding: 2rem;
+  }
+
+  .team-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(212, 175, 55, 0.25);
+    box-shadow: 
+      0 16px 40px rgba(0, 0, 0, 0.3),
+      0 0 40px rgba(212, 175, 55, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .team-card-photo {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 1.5rem;
+  }
+
+  .team-card-photo img {
+    border-width: 4px;
+  }
+
+  .team-card:hover .team-card-photo img {
+    transform: scale(1.05);
+    box-shadow: 
+      0 0 0 8px rgba(212, 175, 55, 0.15),
+      0 12px 32px rgba(0, 0, 0, 0.35),
+      0 0 40px rgba(212, 175, 55, 0.3);
+  }
+
+  .team-card-info h3 {
+    font-size: 1.7rem;
+  }
+
+  .team-role {
+    font-size: 0.9rem;
+  }
+
+  .team-bio {
+    font-size: 0.95rem;
+    padding: 1.25rem;
+  }
+
+  .team-skills span {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.9rem;
+  }
+
+  .team-skills span:hover {
+    background: rgba(212, 175, 55, 0.15);
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+    transform: translateY(-2px);
+  }
+}
+
+/* ===================================
+   DESKTOP (1024px+) - Larger & More Spacious
+=================================== */
+@media (min-width: 1024px) {
+  .team-section {
+    padding: 6rem 2.5rem;
+  }
+
+  .team-section .section-header h2 {
+    font-size: 3rem;
+  }
+
+  .team-grid {
+    gap: 2.5rem;
+    max-width: 1300px;
+  }
+
+  .team-card {
+    padding: 2.5rem;
+  }
+
+  .team-card-photo {
+    width: 160px;
+    height: 160px;
+  }
+
+  .team-card-info h3 {
+    font-size: 1.9rem;
+  }
+
+  .team-role {
+    font-size: 0.95rem;
+  }
+
+  .team-bio {
+    font-size: 1rem;
+    padding: 1.5rem;
+  }
+
+  .team-skills span {
+    font-size: 0.85rem;
+    padding: 0.55rem 1rem;
+  }
+}
+
+/* ===================================
+   EXTRA LARGE (1280px+)
+=================================== */
+@media (min-width: 1280px) {
+  .team-grid {
+    max-width: 1400px;
+  }
+
+  .team-card-photo {
+    width: 180px;
+    height: 180px;
+  }
+
+  .team-card-info h3 {
+    font-size: 2.1rem;
+  }
+}
