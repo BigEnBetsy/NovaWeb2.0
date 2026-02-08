@@ -2418,6 +2418,6 @@ section {
 
 @media (max-width: 768px) {
   .student-showcase {
-    display: none;
+    display: none !important;
   }
 }
