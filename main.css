@@ -2421,3 +2421,42 @@ section {
     display: none !important;
   }
 }
+
+.cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cv-btn-view {
+  background: rgba(212, 175, 55, 0.12);
+  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  color: var(--accent-gold-light);
+}
+
+.cv-btn-view:hover {
+  background: rgba(212, 175, 55, 0.22);
+  border-color: var(--accent-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.25);
+}
+
+.cv-btn-download {
+  background: var(--gradient-gold);
+  border: 1.5px solid transparent;
+  color: var(--bg-primary);
+}
+
+.cv-btn-download:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
+  filter: brightness(1.05);
+}
