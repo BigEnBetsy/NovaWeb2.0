@@ -135,7 +135,7 @@
     .logo-icon {
       height: 42px;
       width: auto;
-      filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.25));
+      /* filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.25)); */
       transition: all 0.3s ease;
     }
 
@@ -1452,7 +1452,7 @@
     
 .why-us-section {
   padding: 5rem 0;
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
   position: relative;
   overflow: hidden;
 }
@@ -2459,4 +2459,11 @@ section {
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
   filter: brightness(1.05);
+}
+
+
+
+.packages-section {
+  padding: 4rem 1.5rem;
+  background: var(--bg-secondary) !important;
 }
